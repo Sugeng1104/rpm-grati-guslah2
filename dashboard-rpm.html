@@ -77,9 +77,26 @@
                 </div>
             </div>
 
+            <!-- Kompetensi Murid & Karakteristik -->
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">Target Kompetensi / Kesiapan Awal Murid</label>
+                    <select id="kompetensiMurid" required class="w-full px-4 py-2.5 border rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none text-sm bg-white">
+                        <option value="25% (Perlu Pendampingan Intensif / Konkret Dasar)">25% - Perlu Pendampingan Intensif (Dasar)</option>
+                        <option value="50% (Berkembang / Sebagian Besar Memahami Konsep)">50% - Berkembang (Sebagian Besar Paham)</option>
+                        <option value="75% (Cakap / Siap Eksplorasi Mandiri & Kelompok)">75% - Cakap (Siap Eksplorasi)</option>
+                        <option value="90% (Mahir / Tantangan Pengayaan Tingkat Lanjut)">90% - Mahir (Tantangan Pengayaan)</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">Karakteristik Murid</label>
+                    <textarea id="karakteristikMurid" rows="2" required class="w-full px-4 py-2 border rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none text-sm" placeholder="Contoh: Antusias tinggi pada permainan kelompok, kinestetik, dan menyukai ilustrasi visual.">Antusias tinggi pada permainan kelompok, kinestetik, dan menyukai ilustrasi visual.</textarea>
+                </div>
+            </div>
+
             <div>
-                <label class="block text-sm font-semibold text-slate-700 mb-2">Analisis Minat & Kebutuhan Belajar Peserta Didik</label>
-                <textarea id="kebutuhanSiswa" rows="3" required class="w-full px-4 py-2.5 border rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none text-sm">Peserta didik membutuhkan pendekatan konkret dan visual (permainan kartu, benda konkret) sebelum masuk ke konsep abstrak.</textarea>
+                <label class="block text-sm font-semibold text-slate-700 mb-2">Analisis Lingkungan Murid</label>
+                <textarea id="lingkunganMurid" rows="2" required class="w-full px-4 py-2 border rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none text-sm" placeholder="Contoh: Lingkungan pedesaan / perkotaan dekat pasar tradisional, mendukung konteks jual beli nyata.">Lingkungan sekitar sekolah dekat dengan area pertokoan dan pasar tradisional yang relevan untuk konteks kehidupan sehari-hari.</textarea>
             </div>
 
             <div class="border-t pt-6">
@@ -137,7 +154,9 @@
             const faseKelas = document.getElementById('faseKelas').value;
             const topik = document.getElementById('topik').value;
             const waktu = document.getElementById('waktu').value;
-            const kebutuhan = document.getElementById('kebutuhanSiswa').value;
+            const kompetensiMurid = document.getElementById('kompetensiMurid').value;
+            const karakteristikMurid = document.getElementById('karakteristikMurid').value;
+            const lingkunganMurid = document.getElementById('lingkunganMurid').value;
             const mindful = document.getElementById('mindful').value;
             const meaningful = document.getElementById('meaningful').value;
             const joyful = document.getElementById('joyful').value;
@@ -159,8 +178,12 @@
                     <tr><td class="border p-2 font-semibold bg-slate-100">Alokasi Waktu</td><td class="border p-2">${waktu}</td></tr>
                 </table>
 
-                <h4 class="font-bold text-slate-900 mt-4">B. IDENTIFIKASI PESERTA DIDIK</h4>
-                <p class="text-xs"><strong>Kebutuhan & Karakteristik:</strong> ${kebutuhan}</p>
+                <h4 class="font-bold text-slate-900 mt-4">B. IDENTIFIKASI PESERTA DIDIK & LINGKUNGAN</h4>
+                <ul class="list-disc pl-5 text-xs space-y-1">
+                    <li><strong>Target / Kesiapan Kompetensi Awal:</strong> ${kompetensiMurid}</li>
+                    <li><strong>Karakteristik Murid:</strong> ${karakteristikMurid}</li>
+                    <li><strong>Analisis Lingkungan Murid:</strong> ${lingkunganMurid}</li>
+                </ul>
 
                 <h4 class="font-bold text-slate-900 mt-4">C. DIMENSI PROFIL PELAJAR LULUSAN</h4>
                 <ul class="list-disc pl-5 text-xs space-y-1">
@@ -177,7 +200,7 @@
                 </div>
 
                 <h4 class="font-bold text-slate-900 mt-4">E. PENGALAMAN BELAJAR (KEGIATAN INTI)</h4>
-                <p class="text-xs">Fokus pada eksplorasi konkret, keterlibatan kelompok, serta refleksi di akhir pembelajaran untuk memastikan tercapainya Capaian Pembelajaran (CP) Kurikulum Merdeka.</p>
+                <p class="text-xs">Fokus pada eksplorasi konkret, keterlibatan kelompok sesuai tingkat kompetensi (${kompetensiMurid}), serta refleksi di akhir pembelajaran.</p>
             `;
 
             previewContainer.classList.remove('hidden');
@@ -185,7 +208,7 @@
         }
 
         function downloadDoc() {
-            alert("Dokumen Rencana Pembelajaran Mendalam siap diunduh dan disinkronkan ke Google Drive Anda!");
+            alert("Dokumen Rencana Pembelajaran Mendalam dengan analisis kompetensi, karakteristik, dan lingkungan murid siap diunduh!");
         }
     </script>
 </body>
