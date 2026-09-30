@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pendaftaran Anggota - Kombel Guslah 2 Grati</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>body { font-family: 'Inter', sans-serif; }</style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <!-- Navbar -->
+    <header class="bg-emerald-700 text-white shadow-md">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <span class="bg-white text-emerald-800 font-bold px-3 py-1.5 rounded-lg text-lg shadow">G2</span>
+                <div>
+                    <h1 class="font-bold text-base leading-tight">Kombel Guslah 2 Grati</h1>
+                    <p class="text-xs text-emerald-200">Kec. Grati, Kab. Pasuruan</p>
+                </div>
+            </div>
+            <a href="index.html" class="text-sm hover:text-emerald-200 font-semibold">← Kembali ke Beranda</a>
+        </div>
+    </header>
+
+    <!-- Main Form Container -->
+    <main class="max-w-xl mx-auto px-6 py-12">
+        <div class="bg-white p-8 rounded-2xl shadow-xl border border-slate-100">
+            <div class="text-center mb-8">
+                <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1 rounded-full uppercase">Pendaftaran Anggota</span>
+                <h2 class="text-2xl font-bold text-slate-900 mt-3">Registrasi Kombel & Sinkronisasi Drive</h2>
+                <p class="text-sm text-slate-500 mt-1">Sistem akan otomatis membuat folder penyimpanan RPM khusus atas nama Anda di Google Drive.</p>
+            </div>
+
+            <form id="formPendaftaran" onsubmit="submitForm(event)" class="space-y-5">
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Nama Lengkap & Gelar</label>
+                    <input type="text" id="nama" required class="w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none text-sm" placeholder="Contoh: Siti Aminah, S.Pd.SD">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">NIP / Nomor Identitas</label>
+                    <input type="text" id="nip" required class="w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none text-sm" placeholder="Masukkan NIP atau No. Pegawai">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Asal Sekolah Dasar (SD)</label>
+                    <input type="text" id="sekolah" required class="w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none text-sm" placeholder="Contoh: SD Negeri Grati I">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Nomor WhatsApp Aktif</label>
+                    <input type="tel" id="whatsapp" required class="w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none text-sm" placeholder="08xxxxxxxxxx">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Fase / Kelas yang Diampu</label>
+                    <select id="mapelKelas" class="w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none text-sm bg-white">
+                        <option value="Fase A (Kelas 1 & 2 SD)">Fase A (Kelas 1 & 2 SD)</option>
+                        <option value="Fase B (Kelas 3 & 4 SD)">Fase B (Kelas 3 & 4 SD)</option>
+                        <option value="Fase C (Kelas 5 & 6 SD)">Fase C (Kelas 5 & 6 SD)</option>
+                    </select>
+                </div>
+
+                <button type="submit" id="btnSubmit" class="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-semibold py-3 rounded-xl shadow-lg transition text-sm">
+                    Daftar & Buat Folder Google Drive Otomatis
+                </button>
+            </form>
+
+            <div id="resultBox" class="mt-6 hidden p-4 rounded-xl text-center text-sm"></div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-8 text-center text-sm mt-12">
+        <p>&copy; 2026 Kombel Guslah 2 Kecamatan Grati, Kabupaten Pasuruan.</p>
+    </footer>
+
+    <script>
+        function submitForm(event) {
+            event.preventDefault();
+            const btn = document.getElementById('btnSubmit');
+            const resultBox = document.getElementById('resultBox');
+            
+            btn.disabled = true;
+            btn.innerText = "Memproses Data & Membuat Folder Drive...";
+
+            const payload = {
+                nama: document.getElementById('nama').value,
+                nip: document.getElementById('nip').value,
+                sekolah: document.getElementById('sekolah').value,
+                whatsapp: document.getElementById('whatsapp').value,
+                mapelKelas: document.getElementById('mapelKelas').value
+            };
+
+            // URL Web App Google Apps Script (ganti dengan URL deployment Anda)
+            const scriptURL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
+
+            fetch(scriptURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            }).then(() => {
+                resultBox.className = "mt-6 p-4 rounded-xl bg-emerald-100 text-emerald-800 text-sm block border border-emerald-200";
+                resultBox.innerHTML = "<strong>Pendaftaran Berhasil!</strong> Data Anda telah tercatat di database dan Folder Google Drive khusus RPM Anda telah berhasil dibuat otomatis. Selamat bergabung di Kombel Guslah 2 Grati!";
+                document.getElementById('formPendaftaran').reset();
+                btn.disabled = false;
+                btn.innerText = "Daftar & Buat Folder Google Drive Otomatis";
+            }).catch(error => {
+                resultBox.className = "mt-6 p-4 rounded-xl bg-rose-100 text-rose-800 text-sm block border border-rose-200";
+                resultBox.innerHTML = "Terjadi kendala koneksi ke server. Silakan coba beberapa saat lagi.";
+                btn.disabled = false;
+                btn.innerText = "Daftar & Buat Folder Google Drive Otomatis";
+            });
+        }
+    </script>
+</body>
+</html>
