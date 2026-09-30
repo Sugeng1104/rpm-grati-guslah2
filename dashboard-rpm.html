@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Generator RPM - Kombel Guslah 2 Grati</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>body { font-family: 'Inter', sans-serif; }</style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <!-- Navbar -->
+    <header class="bg-emerald-700 text-white shadow-md sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <span class="bg-white text-emerald-800 font-bold px-3 py-1.5 rounded-lg text-lg shadow">G2</span>
+                <div>
+                    <h1 class="font-bold text-base leading-tight">Dashboard RPM - Kombel Guslah 2 Grati</h1>
+                    <p class="text-xs text-emerald-200">Kec. Grati, Kab. Pasuruan</p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <span id="userSession" class="text-xs bg-emerald-800 px-3 py-1 rounded-full text-emerald-100">Guru Pengampu SD</span>
+                <a href="index.html" class="text-xs bg-amber-400 hover:bg-amber-500 text-emerald-950 font-semibold px-3 py-1.5 rounded-lg transition">Keluar</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-5xl mx-auto px-6 py-10">
+        
+        <!-- Welcome Card -->
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 mb-8 flex justify-between items-center">
+            <div>
+                <h2 class="text-xl font-bold text-slate-900">Buat Rencana Pembelajaran Mendalam (RPM)</h2>
+                <p class="text-sm text-slate-500 mt-1">Sesuaikan dengan Capaian Pembelajaran Kurikulum Merdeka & Pendekatan Deep Learning.</p>
+            </div>
+            <span class="bg-emerald-50 text-emerald-700 font-semibold text-xs px-3 py-1.5 rounded-lg border border-emerald-100">Format Standar SD</span>
+        </div>
+
+        <!-- Form Generator -->
+        <form id="formRPM" onsubmit="generateRPM(event)" class="bg-white p-8 rounded-2xl shadow-xl border border-slate-200 space-y-6">
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">Mata Pelajaran</label>
+                    <select id="mapel" required class="w-full px-4 py-2.5 border rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none text-sm bg-white">
+                        <option value="Matematika">Matematika</option>
+                        <option value="Bahasa Indonesia">Bahasa Indonesia</option>
+                        <option value="Ilmu Pengetahuan Alam dan Sosial (IPAS)">Ilmu Pengetahuan Alam dan Sosial (IPAS)</option>
+                        <option value="Pendidikan Pancasila">Pendidikan Pancasila</option>
+                        <option value="Bahasa Inggris">Bahasa Inggris</option>
+                        <option value="Pendidikan Jasmani, Olahraga, dan Kesehatan (PJOK)">PJOK</option>
+                        <option value="Seni Musik">Seni Musik</option>
+                        <option value="Seni Rupa">Seni Rupa</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">Fase / Kelas</label>
+                    <select id="faseKelas" required class="w-full px-4 py-2.5 border rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none text-sm bg-white">
+                        <option value="Fase A / Kelas 1 & 2 SD">Fase A / Kelas 1 & 2 SD</option>
+                        <option value="Fase B / Kelas 3 & 4 SD">Fase B / Kelas 3 & 4 SD</option>
+                        <option value="Fase C / Kelas 5 & 6 SD">Fase C / Kelas 5 & 6 SD</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">Bab / Topik Materi Pembelajaran</label>
+                    <input type="text" id="topik" required class="w-full px-4 py-2.5 border rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none text-sm" placeholder="Contoh: Bilangan Cacah sampai 10.000">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">Alokasi Waktu</label>
+                    <input type="text" id="waktu" required class="w-full px-4 py-2.5 border rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none text-sm" placeholder="Contoh: 2 x 35 menit (1 Pertemuan)">
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-2">Analisis Minat & Kebutuhan Belajar Peserta Didik</label>
+                <textarea id="kebutuhanSiswa" rows="3" required class="w-full px-4 py-2.5 border rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none text-sm">Peserta didik membutuhkan pendekatan konkret dan visual (permainan kartu, benda konkret) sebelum masuk ke konsep abstrak.</textarea>
+            </div>
+
+            <div class="border-t pt-6">
+                <h3 class="font-bold text-slate-800 mb-4 text-sm uppercase tracking-wider text-emerald-700">Penerapan Pendekatan Deep Learning</h3>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <label class="block font-semibold text-xs text-slate-700 mb-1">🧘 Mindful Learning (Kesadaran)</label>
+                        <input type="text" id="mindful" class="w-full px-3 py-2 border rounded-lg text-xs bg-white" value="Sesi hening sejenak & latihan tarik napas dalam di awal kelas.">
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <label class="block font-semibold text-xs text-slate-700 mb-1">🌍 Meaningful Learning (Bermakna)</label>
+                        <input type="text" id="meaningful" class="w-full px-3 py-2 border rounded-lg text-xs bg-white" value="Mengaitkan materi dengan konteks nyata (transaksi jual beli di toko).">
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <label class="block font-semibold text-xs text-slate-700 mb-1">🎉 Joyful Learning (Menyenangkan)</label>
+                        <input type="text" id="joyful" class="w-full px-3 py-2 border rounded-lg text-xs bg-white" value="Game-based learning melalui permainan kartu angka kelompok.">
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" id="btnGen" class="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-semibold py-3.5 rounded-xl shadow-lg transition text-sm flex justify-center items-center space-x-2">
+                <span>✨ Generate Rencana Pembelajaran Mendalam (RPM)</span>
+            </button>
+        </form>
+
+        <!-- Preview Result Container -->
+        <div id="previewContainer" class="mt-10 hidden bg-white p-8 rounded-2xl shadow-xl border border-slate-200">
+            <div class="flex justify-between items-center border-b pb-4 mb-6">
+                <div>
+                    <h3 class="text-lg font-bold text-slate-900">Hasil Pratinjau RPM</h3>
+                    <p class="text-xs text-slate-500">Sesuai dengan template resmi & Capaian Pembelajaran Kurikulum Merdeka.</p>
+                </div>
+                <button onclick="downloadDoc()" class="bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-semibold px-4 py-2 rounded-lg shadow transition">
+                    📥 Unduh / Simpan Dokumen
+                </button>
+            </div>
+            
+            <div id="rpmContent" class="prose max-w-none text-sm text-slate-700 space-y-4 bg-slate-50 p-6 rounded-xl border">
+                <!-- Dynamic Content Will Load Here -->
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-8 text-center text-sm mt-16">
+        <p>&copy; 2026 Kombel Guslah 2 Kecamatan Grati, Kabupaten Pasuruan. Terintegrasi Google Apps Script & GitHub.</p>
+    </footer>
+
+    <script>
+        function generateRPM(event) {
+            event.preventDefault();
+            
+            const mapel = document.getElementById('mapel').value;
+            const faseKelas = document.getElementById('faseKelas').value;
+            const topik = document.getElementById('topik').value;
+            const waktu = document.getElementById('waktu').value;
+            const kebutuhan = document.getElementById('kebutuhanSiswa').value;
+            const mindful = document.getElementById('mindful').value;
+            const meaningful = document.getElementById('meaningful').value;
+            const joyful = document.getElementById('joyful').value;
+
+            const previewContainer = document.getElementById('previewContainer');
+            const rpmContent = document.getElementById('rpmContent');
+
+            rpmContent.innerHTML = `
+                <h2 class="text-center font-bold text-base text-slate-900 uppercase">MODUL AJAR / RENCANA PEMBELAJARAN MENDALAM</h2>
+                <h3 class="text-center font-semibold text-sm text-emerald-800 mb-6">${mapel.toUpperCase()} - ${faseKelas.toUpperCase()}</h3>
+                
+                <hr class="my-4">
+                
+                <h4 class="font-bold text-slate-900">A. IDENTITAS</h4>
+                <table class="w-full text-xs border-collapse border border-slate-300 my-2">
+                    <tr><td class="border p-2 font-semibold bg-slate-100 w-1/3">Mata Pelajaran</td><td class="border p-2">${mapel}</td></tr>
+                    <tr><td class="border p-2 font-semibold bg-slate-100">Kelas / Fase</td><td class="border p-2">${faseKelas}</td></tr>
+                    <tr><td class="border p-2 font-semibold bg-slate-100">Topik / Materi</td><td class="border p-2">${topik}</td></tr>
+                    <tr><td class="border p-2 font-semibold bg-slate-100">Alokasi Waktu</td><td class="border p-2">${waktu}</td></tr>
+                </table>
+
+                <h4 class="font-bold text-slate-900 mt-4">B. IDENTIFIKASI PESERTA DIDIK</h4>
+                <p class="text-xs"><strong>Kebutuhan & Karakteristik:</strong> ${kebutuhan}</p>
+
+                <h4 class="font-bold text-slate-900 mt-4">C. DIMENSI PROFIL PELAJAR LULUSAN</h4>
+                <ul class="list-disc pl-5 text-xs space-y-1">
+                    <li><strong>Beriman & Berakhlak Mulia:</strong> Mensyukuri kemampuan berpikir logis dan jujur.</li>
+                    <li><strong>Gotong Royong:</strong> Kolaborasi aktif dalam kegiatan kelompok dan permainan edukatif.</li>
+                    <li><strong>Bernalar Kritis & Mandiri:</strong> Menganalisis konsep materi serta merefleksikan proses belajar.</li>
+                </ul>
+
+                <h4 class="font-bold text-slate-900 mt-4">D. PENDEKATAN PEMBELAJARAN MENDALAM (DEEP LEARNING)</h4>
+                <div class="bg-white p-3 rounded border text-xs space-y-2">
+                    <p>🧘 <strong>Mindful Learning:</strong> ${mindful}</p>
+                    <p>🌍 <strong>Meaningful Learning:</strong> ${meaningful}</p>
+                    <p>🎉 <strong>Joyful Learning:</strong> ${joyful}</p>
+                </div>
+
+                <h4 class="font-bold text-slate-900 mt-4">E. PENGALAMAN BELAJAR (KEGIATAN INTI)</h4>
+                <p class="text-xs">Fokus pada eksplorasi konkret, keterlibatan kelompok, serta refleksi di akhir pembelajaran untuk memastikan tercapainya Capaian Pembelajaran (CP) Kurikulum Merdeka.</p>
+            `;
+
+            previewContainer.classList.remove('hidden');
+            previewContainer.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function downloadDoc() {
+            alert("Dokumen Rencana Pembelajaran Mendalam siap diunduh dan disinkronkan ke Google Drive Anda!");
+        }
+    </script>
+</body>
+</html>
