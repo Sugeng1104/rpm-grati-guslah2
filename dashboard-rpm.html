@@ -6,7 +6,15 @@
     <title>Dashboard Generator RPM - Kombel Guslah 2 Grati</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>body { font-family: 'Inter', sans-serif; }</style>
+    <style>body { font-family: 'Inter', sans-serif; }
+:root{--ink:#153b3a;--green:#087966}body{background:radial-gradient(ellipse at 90% 0%,#cdeee3,transparent 45%),radial-gradient(ellipse at 0% 60%,#e0e8ff,transparent 48%),#f4f8f7!important;color:var(--ink)}
+header{z-index:30!important;background:rgba(6,79,69,.96)!important;box-shadow:0 12px 35px #064e3b22!important}#loginModal{z-index:100!important;padding:20px}
+.dashboard-hero{position:relative;overflow:hidden;background:linear-gradient(120deg,#064e46,#087f70 70%,#18a18c);border:1px solid #ffffff70;border-radius:28px;padding:36px;color:white;box-shadow:0 20px 0 -12px #063f38,0 30px 50px #064e3b24;display:grid;grid-template-columns:1.4fr 1fr;gap:24px;align-items:center}
+.hero-art{height:195px;position:relative;perspective:900px}.book3d{position:absolute;width:125px;height:160px;border-radius:9px 16px 16px 9px;background:linear-gradient(140deg,#fbdf8b,#f0ad45);box-shadow:-10px 9px 0 #df9933,-15px 15px 0 #fff4d3,20px 32px 25px #002e3945;transform:rotateY(-25deg) rotateZ(12deg);left:35%;top:5px;border-left:9px solid #b97c27;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#624112;font-weight:800;font-size:28px}.book3d small{font-size:10px;letter-spacing:2px;margin-top:10px}.orb{position:absolute;border-radius:50%;background:radial-gradient(circle at 30% 25%,#f7fffa,#63d1b6 55%,#168f80);box-shadow:12px 18px 25px #003a4144;width:57px;height:57px;left:12%;top:110px}.tile3d{position:absolute;right:7%;bottom:12px;border-radius:15px;background:linear-gradient(135deg,#e5eeff,#a3b9ed);box-shadow:7px 9px 0 #688bc7,15px 24px 22px #003c4640;transform:rotate(-12deg);width:80px;height:80px;display:grid;place-items:center;color:#284c80;font-size:28px;font-weight:bold}
+.workspace{display:grid;grid-template-columns:230px minmax(0,1fr);gap:24px;margin-top:34px}.side-nav{background:#ffffffd9;border:1px solid white;border-radius:22px;padding:18px;height:fit-content;position:sticky;top:105px;box-shadow:0 10px 25px #254c4710}.nav-button{width:100%;text-align:left;padding:13px 14px;border-radius:13px;margin-top:7px;font-weight:600;color:#4e6462;transition:.2s}.nav-button[aria-selected=true]{background:linear-gradient(120deg,#087966,#119787);color:white;box-shadow:0 6px 0 -3px #045c50,0 9px 16px #08796625}.nav-button:hover{transform:translateY(-2px)}.panel[hidden]{display:none!important}.menu-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}.menu-card{background:#fff;border:1px solid #e3ece8;border-radius:24px;padding:28px;text-align:left;box-shadow:0 9px 0 -4px #d7e4de,0 20px 30px #2e514512;transition:transform .2s,box-shadow .2s}.menu-card:hover{transform:translateY(-6px);box-shadow:0 13px 0 -5px #d7e4de,0 28px 35px #2e51451c}.card-icon{display:grid;place-items:center;width:65px;height:65px;border-radius:18px;background:linear-gradient(135deg,#e0faf0,#a5dfc8);color:#076953;box-shadow:4px 5px 0 #83bea8;margin-bottom:23px;font-weight:800;font-size:22px;transform:rotate(-6deg)}.card-icon.blue{background:linear-gradient(135deg,#e7eeff,#bfcdf5);box-shadow:4px 5px 0 #96aad6;color:#335b95}input,select,textarea{max-width:100%}input:focus,select:focus,textarea:focus{outline:2px solid #2a9d86;outline-offset:2px}.cp-row{background:white;border:1px solid #e3ece8;border-radius:16px;padding:18px;margin-top:12px}.cp-tag{display:inline-block;background:#e8f5ee;color:#14745b;border-radius:8px;padding:4px 8px;font-size:11px;margin-bottom:10px}button:focus-visible,a:focus-visible{outline:3px solid #e5ac35;outline-offset:4px}
+@media(max-width:800px){.workspace{grid-template-columns:1fr}.side-nav{position:static;display:flex;gap:6px;padding:10px}.side-nav .nav-label,.side-nav .side-note{display:none}.nav-button{margin:0;text-align:center;padding:12px 8px;font-size:12px}.dashboard-hero{padding:26px;grid-template-columns:1fr}.hero-art{display:none}header>div{flex-wrap:wrap;gap:12px}#userSession{max-width:200px;overflow-wrap:anywhere;white-space:normal}.menu-grid{grid-template-columns:1fr}#formRPM,#previewContainer{padding:20px}#previewContainer>div:first-child{flex-wrap:wrap;gap:12px}#rpmContent{overflow-x:auto}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style>
 </head>
 <body class="bg-slate-50 text-slate-800">
 
@@ -48,7 +56,7 @@
             <div class="flex items-center space-x-3">
                 <span class="bg-white text-emerald-800 font-bold px-3 py-1.5 rounded-lg text-lg shadow">G2</span>
                 <div>
-                    <h1 class="font-bold text-base leading-tight">Dashboard RPM - Kombel Guslah 2 Grati</h1>
+                    <h1 class="font-bold text-base leading-tight">Dashboard - Kombel Guslah 2 Grati</h1>
                     <p class="text-xs text-emerald-200">Kec. Grati, Kab. Pasuruan</p>
                 </div>
             </div>
@@ -59,14 +67,21 @@
         </div>
     </header>
 
-    <!-- Main Content -->
-    <main class="max-w-5xl mx-auto px-6 py-10">
-        
-        <!-- Welcome Card -->
+    <main class="max-w-7xl mx-auto px-4 md:px-6 py-8">
+      <section class="dashboard-hero">
+        <div><p class="text-xs font-semibold tracking-widest text-emerald-100 uppercase">Ruang kerja guru · Guslah 2 Grati</p><h2 class="text-3xl md:text-4xl font-bold mt-4 leading-tight">Rancang pembelajaran.<br>Hadirkan pengalaman bermakna.</h2><p class="mt-4 text-sm text-emerald-50 leading-relaxed max-w-lg">Mulai dari capaian pembelajaran, lalu susun rencana yang dekat dengan kehidupan murid.</p><button type="button" onclick="showMenu('rpm')" class="mt-6 bg-amber-300 text-emerald-950 px-5 py-3 rounded-xl font-semibold text-sm shadow-lg">Mulai menyusun RPM →</button></div>
+        <div class="hero-art" aria-hidden="true"><div class="orb"></div><div class="book3d">RPM<small>GUSLAH 2</small></div><div class="tile3d">CP</div></div>
+      </section>
+      <div class="workspace">
+       <nav class="side-nav" aria-label="Menu dashboard" role="tablist"><p class="nav-label text-xs uppercase tracking-widest text-slate-400 mb-3 px-3">Menu utama</p><button id="tab-home" type="button" role="tab" aria-controls="panel-home" aria-selected="true" class="nav-button" onclick="showMenu('home')">⌂ &nbsp; Dashboard</button><button id="tab-cp" type="button" role="tab" aria-controls="panel-cp" aria-selected="false" class="nav-button" onclick="showMenu('cp')">▤ &nbsp; CP-ATP</button><button id="tab-rpm" type="button" role="tab" aria-controls="panel-rpm" aria-selected="false" class="nav-button" onclick="showMenu('rpm')">✎ &nbsp; RPM</button><p class="side-note text-xs leading-relaxed text-slate-400 border-t mt-5 pt-4 px-3">Komunitas Belajar Guslah 2<br>Kecamatan Grati, Pasuruan</p></nav>
+       <div class="min-w-0">
+        <section id="panel-home" class="panel" role="tabpanel" aria-labelledby="tab-home"><h2 class="text-2xl font-bold mb-2">Selamat datang, Bapak/Ibu Guru</h2><p class="text-sm text-slate-500 mb-6">Pilih perangkat pembelajaran yang ingin Anda siapkan.</p><div class="menu-grid"><button type="button" class="menu-card" onclick="showMenu('cp')"><span class="card-icon blue" aria-hidden="true">CP</span><h3 class="text-xl font-bold">CP-ATP</h3><p class="text-sm text-slate-500 leading-relaxed mt-3">Telusuri capaian pembelajaran berdasarkan mata pelajaran dan fase sebagai dasar penyusunan alur tujuan pembelajaran.</p><span class="block mt-6 text-sm font-semibold text-blue-700">Buka CP-ATP →</span></button><button type="button" class="menu-card" onclick="showMenu('rpm')"><span class="card-icon" aria-hidden="true">RPM</span><h3 class="text-xl font-bold">Rencana Pembelajaran Mendalam</h3><p class="text-sm text-slate-500 leading-relaxed mt-3">Susun rencana pembelajaran dengan memperhatikan kesiapan, minat, dan kebutuhan belajar murid.</p><span class="block mt-6 text-sm font-semibold text-emerald-700">Buka pembuatan RPM →</span></button></div><div class="mt-7 bg-white/70 border border-white rounded-2xl p-6"><h3 class="font-semibold">Alur perencanaan pembelajaran</h3><p class="text-sm text-slate-500 mt-2 leading-relaxed">Telaah CP, rumuskan tujuan pembelajaran, susun ATP, lalu rancang kegiatan dan asesmen dalam RPM.</p></div></section>
+        <section id="panel-cp" class="panel" hidden role="tabpanel" aria-labelledby="tab-cp"><div class="bg-white rounded-2xl p-6 border border-slate-200"><p class="text-xs uppercase tracking-widest text-blue-700 font-semibold">Perencanaan kurikulum</p><h2 class="text-2xl font-bold mt-2">CP dan Alur Tujuan Pembelajaran</h2><p class="text-sm text-slate-500 mt-2">Referensi CP dari database yang Bapak kirim. Data ini merupakan salinan pada saat halaman dibuat.</p><div class="grid md:grid-cols-2 gap-4 mt-6"><div><label for="cpMapel" class="text-sm font-semibold block mb-2">Mata pelajaran</label><select id="cpMapel" onchange="renderCP()" class="border rounded-xl px-3 py-3 w-full"><option value="">Semua mata pelajaran</option></select></div><div><label for="cpFase" class="text-sm font-semibold block mb-2">Fase</label><select id="cpFase" onchange="renderCP()" class="border rounded-xl px-3 py-3 w-full"><option value="">Semua fase</option></select></div></div><p id="cpCount" class="text-xs text-slate-500 mt-4" aria-live="polite"></p><div id="cpList"></div></div><div class="bg-blue-50 border border-blue-100 rounded-2xl p-6 mt-5"><h3 class="font-bold text-blue-900">Alur Tujuan Pembelajaran (ATP)</h3><p class="text-sm text-blue-900 leading-relaxed mt-2">ATP memuat urutan tujuan pembelajaran. Gunakan CP di atas untuk merumuskan tujuan dan mengurutkannya sesuai kebutuhan murid.</p><p class="text-xs text-blue-800 mt-3">Database yang dikirim belum memiliki sheet ATP. Fitur pembuatan dan penyimpanan ATP belum tersedia pada halaman ini.</p></div></section>
+        <section id="panel-rpm" class="panel" hidden role="tabpanel" aria-labelledby="tab-rpm">        <!-- Welcome Card -->
         <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 mb-8 flex justify-between items-center">
             <div>
                 <h2 class="text-xl font-bold text-slate-900">Buat Rencana Pembelajaran Mendalam (RPM)</h2>
-                <p class="text-sm text-slate-500 mt-1">Sesuai dengan template kosong resmi & Capaian Pembelajaran Kurikulum Merdeka.</p>
+                <p class="text-sm text-slate-500 mt-1">Susun identitas, kebutuhan murid, dan pengalaman pembelajaran mendalam.</p>
             </div>
             <span class="bg-emerald-50 text-emerald-700 font-semibold text-xs px-3 py-1.5 rounded-lg border border-emerald-100">Format Standar SD</span>
         </div>
@@ -163,7 +178,7 @@
         <div id="previewContainer" class="mt-10 hidden bg-white p-8 rounded-2xl shadow-xl border border-slate-200">
             <div class="flex justify-between items-center border-b pb-4 mb-6">
                 <div>
-                    <h3 class="text-lg font-bold text-slate-900">Hasil Pratinjau RPM Sesuai Template Resmi</h3>
+                    <h3 class="text-lg font-bold text-slate-900">Hasil Pratinjau RPM</h3>
                     <p class="text-xs text-slate-500">Siap direkam ke database spreadsheet & diunduh.</p>
                 </div>
                 <button onclick="saveAndDownload()" class="bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-semibold px-4 py-2 rounded-lg shadow transition">
@@ -176,6 +191,9 @@
             </div>
         </div>
 
+</section>
+       </div>
+      </div>
     </main>
 
     <!-- Footer -->
@@ -184,6 +202,37 @@
     </footer>
 
     <script>
+
+        function showMenu(name) {
+            ['home','cp','rpm'].forEach(key => {
+                document.getElementById('panel-' + key).hidden = key !== name;
+                document.getElementById('tab-' + key).setAttribute('aria-selected', String(key === name));
+            });
+        }
+        const cpData = [{"mapel": "Matematika", "fase": "Fase A (Kelas 1 & 2)", "elemen": "Bilangan", "cp": "Menunjukkan pemahaman dan memiliki intuisi bilangan (number sense) pada bilangan cacah sampai 100; membaca, menulis, menentukan nilai tempat, membandingkan, mengurutkan, serta melakukan komposisi dan dekomposisi bilangan; melakukan operasi penjumlahan dan pengurangan menggunakan benda-benda konkret yang banyaknya sampai 20; dan menunjukkan pemahaman pecahan sebagai bagian dari keseluruhan."}, {"mapel": "Matematika", "fase": "Fase A (Kelas 1 & 2)", "elemen": "Aljabar", "cp": "Menunjukan pemahaman makna simbol matematika '=' dalam kalimat matematika penjumlahan dan pengurangan bilangan cacah sampai 20; mengenali, meniru, dan melanjutkan pola bukan bilangan (gambar, warna, bunyi)."}, {"mapel": "Matematika", "fase": "Fase A (Kelas 1 & 2)", "elemen": "Pengukuran", "cp": "Membandingkan panjang dan berat benda secara langsung, serta durasi waktu; mengukur dan mengestimasi panjang dan berat benda menggunakan satuan tidak baku."}, {"mapel": "Matematika", "fase": "Fase A (Kelas 1 & 2)", "elemen": "Geometri", "cp": "Mengenal berbagai bangun datar (segitiga, segiempat, segi banyak, lingkaran) dan bangun ruang (balok, kubus, kerucut, bola); melakukan komposisi dan dekomposisi bangun datar; menentukan posisi benda terhadap benda lain."}, {"mapel": "Matematika", "fase": "Fase A (Kelas 1 & 2)", "elemen": "Analisis Data dan Peluang", "cp": "Mengurutkan, menyortir, mengelompokkan, membandingkan, dan menyajikan data dari banyak benda dengan menggunakan turus dan piktogram paling banyak 4 kategori."}, {"mapel": "Matematika", "fase": "Fase B (Kelas 3 & 4)", "elemen": "Bilangan", "cp": "Memiliki pemahaman dan intuisi bilangan pada bilangan cacah sampai 10.000; membaca, menulis, membandingkan, mengurutkan, nilai tempat, komposisi dan dekomposisi bilangan; operasi penjumlahan dan pengurangan sampai 1.000; perkalian dan pembagian sampai 100; pecahan sederhana."}, {"mapel": "Matematika", "fase": "Fase B (Kelas 3 & 4)", "elemen": "Aljabar", "cp": "Menemukan nilai yang tidak diketahui dalam kalimat matematika penjumlahan dan pengurangan sampai 100; mengidentifikasi, meniru, dan mengembangkan pola gambar/objek dan pola bilangan membesar/mengecil."}, {"mapel": "Matematika", "fase": "Fase B (Kelas 3 & 4)", "elemen": "Pengukuran", "cp": "Mengukur panjang dan berat benda menggunakan satuan baku; menentukan hubungan antar-satuan baku panjang (cm, m) dan berat (g, kg); mengestimasi luas dan volume."}, {"mapel": "Matematika", "fase": "Fase B (Kelas 3 & 4)", "elemen": "Geometri", "cp": "Mendeskripsikan ciri berbagai bentuk bangun datar (segiempat, segitiga, segi banyak); menyusun dan mengurai berbagai bangun datar."}, {"mapel": "Matematika", "fase": "Fase B (Kelas 3 & 4)", "elemen": "Analisis Data dan Peluang", "cp": "Mengurutkan, membandingkan, menyajikan, menganalisis dan menginterpretasi data dalam bentuk tabel, diagram gambar, piktogram, dan diagram batang."}, {"mapel": "Matematika", "fase": "Fase C (Kelas 5 & 6)", "elemen": "Bilangan", "cp": "Pemahaman bilangan cacah sampai 1.000.000; operasi hitung sampai 100.000; KPK dan FPB; operasi pecahan dan desimal."}, {"mapel": "Matematika", "fase": "Fase C (Kelas 5 & 6)", "elemen": "Aljabar", "cp": "Menemukan nilai belum diketahui dalam kalimat matematika operasi bilangan sampai 1000; pola bilangan melibatkan perkalian/pembagian; rasio satuan."}, {"mapel": "Matematika", "fase": "Fase C (Kelas 5 & 6)", "elemen": "Pengukuran", "cp": "Menentukan keliling dan luas bangun datar serta gabungannya; menghitung durasi waktu dan besar sudut."}, {"mapel": "Matematika", "fase": "Fase C (Kelas 5 & 6)", "elemen": "Geometri", "cp": "Mengkonstruksi dan mengurai bangun ruang (kubus, balok); visualisasi spasial; menentukan lokasi pada peta berpetak."}, {"mapel": "Matematika", "fase": "Fase C (Kelas 5 & 6)", "elemen": "Analisis Data dan Peluang", "cp": "Menyajikan dan menganalisis data dalam bentuk piktogram, diagram batang, dan tabel frekuensi; menentukan kejadian dengan peluang lebih besar/kecil."}, {"mapel": "Bahasa Indonesia", "fase": "Fase A (Kelas 1 & 2)", "elemen": "Menyimak", "cp": "Memahami informasi dari teks nonsastra berbentuk teks aural (percakapan berkaitan dengan diri, keluarga, lingkungan sekitar) dan pesan teks sastra."}, {"mapel": "Bahasa Indonesia", "fase": "Fase A (Kelas 1 & 2)", "elemen": "Membaca dan Memirsa", "cp": "Membaca kata-kata sederhana dengan fasih; memahami isi bacaan dan tayangan tentang diri, keluarga, kesehatan, dan lingkungan sekitar."}, {"mapel": "Bahasa Indonesia", "fase": "Fase A (Kelas 1 & 2)", "elemen": "Berbicara dan Mempresentasikan", "cp": "Merespons dengan bertanya, menjawab, dan menanggapi dengan santun; mengungkapkan perasaan/gagasan lisan; menceritakan kembali isi teks."}, {"mapel": "Bahasa Indonesia", "fase": "Fase A (Kelas 1 & 2)", "elemen": "Menulis", "cp": "Menulis permulaan dengan benar di atas kertas/digital; mengembangkan tulisan tangan; menulis tipe teks sederhana tentang diri dan keluarga."}, {"mapel": "Bahasa Indonesia", "fase": "Fase B (Kelas 3 & 4)", "elemen": "Menyimak", "cp": "Memahami ide pokok informasi teks nonsastra aural; memahami isi teks sastra aural."}, {"mapel": "Bahasa Indonesia", "fase": "Fase B (Kelas 3 & 4)", "elemen": "Membaca dan Memirsa", "cp": "Membaca kata-kata baru dengan fasih; memahami ide pokok, ide pendukung, pesan, dan informasi dalam teks sastra dan nonsastra."}, {"mapel": "Bahasa Indonesia", "fase": "Fase B (Kelas 3 & 4)", "elemen": "Berbicara dan Mempresentasikan", "cp": "Menyajikan pendapat dengan pilihan kata dan gestur yang sesuai; menanggapi diskusi; menceritakan kembali isi teks."}, {"mapel": "Bahasa Indonesia", "fase": "Fase B (Kelas 3 & 4)", "elemen": "Menulis", "cp": "Menulis berbagai tipe teks sederhana dengan rangkaian kalimat beragam; menggunakan kaidah kebahasaan dan kosakata bermakna denotatif."}, {"mapel": "Bahasa Indonesia", "fase": "Fase C (Kelas 5 & 6)", "elemen": "Menyimak", "cp": "Menganalisis informasi teks nonsastra aural; menganalisis isi teks sastra aural."}, {"mapel": "Bahasa Indonesia", "fase": "Fase C (Kelas 5 & 6)", "elemen": "Membaca dan Memirsa", "cp": "Membaca kata dengan berbagai kombinasi huruf dengan fasih; menganalisis informasi dan nilai-nilai dalam teks visual/audiovisual."}, {"mapel": "Bahasa Indonesia", "fase": "Fase C (Kelas 5 & 6)", "elemen": "Berbicara dan Mempresentasikan", "cp": "Mempresentasikan gagasan secara efektif dan santun; menyampaikan perasaan berdasarkan fakta/imajinasi secara kreatif."}, {"mapel": "Bahasa Indonesia", "fase": "Fase C (Kelas 5 & 6)", "elemen": "Menulis", "cp": "Menulis berbagai tipe teks berdasarkan pengamatan/imajinasi dengan kalimat kompleks secara kreatif; menggunakan kosakata denotatif dan konotatif."}, {"mapel": "IPAS", "fase": "Fase B (Kelas 3 & 4)", "elemen": "Pemahaman IPAS & Keterampilan Proses", "cp": "Menjelaskan panca indra, siklus hidup makhluk hidup, pelestarian SDA, wujud zat, energi, gaya, interaksi sosial, letak geografis, bentang alam, dan pengelolaan keuangan secara bijak melalui keterampilan proses (mengamati hingga mengomunikasikan)."}, {"mapel": "IPAS", "fase": "Fase C (Kelas 5 & 6)", "elemen": "Pemahaman IPAS & Keterampilan Proses", "cp": "Merefleksikan sistem organ tubuh, ekosistem, gelombang bunyi/cahaya, energi alternatif, tata surya, letak geografis Indonesia, sejarah pahlawan, keragaman budaya, dan kegiatan ekonomi."}, {"mapel": "Pendidikan Pancasila", "fase": "Fase A (Kelas 1 & 2)", "elemen": "Pancasila, UUD 1945, Bhinneka Tunggal Ika, NKRI", "cp": "Mengenal simbol dan sila Pancasila, aturan keluarga, semboyan Bhinneka Tunggal Ika, serta karakteristik lingkungan tempat tinggal."}, {"mapel": "Pendidikan Pancasila", "fase": "Fase B (Kelas 3 & 4)", "elemen": "Pancasila, UUD 1945, Bhinneka Tunggal Ika, NKRI", "cp": "Mengidentifikasi makna sila Pancasila, aturan sekolah dan rumah, menghargai keberagaman budaya/agama, serta kerja sama di lingkungan sekitar."}, {"mapel": "Pendidikan Pancasila", "fase": "Fase C (Kelas 5 & 6)", "elemen": "Pancasila, UUD 1945, Bhinneka Tunggal Ika, NKRI", "cp": "Memahami kronologi sejarah kelahiran Pancasila, implementasi norma/hak/kewajiban, melestarikan keberagaman budaya, dan gotong royong bela negara."}, {"mapel": "PJOK", "fase": "Fase A (Kelas 1 & 2)", "elemen": "Terampil Bergerak, Belajar Lewat Gerak, Gaya Hidup Aktif, Hidup Sehat", "cp": "Mempraktikkan gerak fundamental, menaati aturan/fair play, berpartisipasi aktif dalam aktivitas jasmani, serta mengenali gaya hidup sehat dan gizi seimbang."}, {"mapel": "PJOK", "fase": "Fase B (Kelas 3 & 4)", "elemen": "Terampil Bergerak, Belajar Lewat Gerak, Gaya Hidup Aktif, Hidup Sehat", "cp": "Menghaluskan keterampilan gerak fundamental, strategi gerak sederhana, partisipasi positif dalam tim, serta pola makan sehat dan pertolongan pertama pada cedera ringan."}, {"mapel": "PJOK", "fase": "Fase C (Kelas 5 & 6)", "elemen": "Terampil Bergerak, Belajar Lewat Gerak, Gaya Hidup Aktif, Hidup Sehat", "cp": "Menyesuaikan keterampilan gerak dalam berbagai situasi, menguji efektivitas strategi, pencegahan perilaku sedenter, serta hubungan gaya hidup dan risiko kesehatan."}, {"mapel": "Seni Rupa", "fase": "Fase B (Kelas 3 & 4)", "elemen": "Mengalami, Refleksi, Berpikir Artistik, Menciptakan, Berdampak", "cp": "Mengidentifikasi unsur rupa dan prinsip desain, merefleksikan karya, menguji coba alat/bahan, serta membuat karya seni rupa berdasarkan pengamatan lingkungan."}, {"mapel": "Seni Musik", "fase": "Fase B (Kelas 3 & 4)", "elemen": "Mengalami, Refleksi, Berpikir Artistik, Menciptakan, Berdampak", "cp": "Mengenali nada dan pola irama, menirukan melodi dengan alat musik ritmis/melodis, membuat bunyi dari alat sekitar, serta menunjukkan minat bermusik."}];
+        function renderCP() {
+            const mapel = document.getElementById('cpMapel').value;
+            const fase = document.getElementById('cpFase').value;
+            const items = cpData.filter(item => (!mapel || item.mapel === mapel) && (!fase || item.fase === fase));
+            const list = document.getElementById('cpList');
+            list.replaceChildren();
+            document.getElementById('cpCount').textContent = items.length + ' capaian pembelajaran ditemukan.';
+            items.forEach(item => {
+                const card = document.createElement('article'); card.className = 'cp-row';
+                const tag = document.createElement('span'); tag.className = 'cp-tag'; tag.textContent = item.mapel + ' · ' + item.fase;
+                const title = document.createElement('h3'); title.className = 'font-semibold text-sm'; title.textContent = item.elemen;
+                const body = document.createElement('p'); body.className = 'text-sm text-slate-600 leading-relaxed mt-2'; body.textContent = item.cp;
+                card.append(tag,title,body); list.append(card);
+            });
+        }
+        [['cpMapel','mapel'],['cpFase','fase']].forEach(([id,key]) => {
+            [...new Set(cpData.map(item => item[key]))].sort().forEach(value => {
+                const option = document.createElement('option'); option.value = value; option.textContent = value;
+                document.getElementById(id).append(option);
+            });
+        });
+        renderCP();
+
         const scriptURL = 'https://script.google.com/macros/s/AKfycbyxtg9h6J2biPH-XmKGJ_rw1E-n2Z7bgQvxzadfGX6IEv4oZaW0e5MLytWllIDpSfU/exec';
         let loggedInUser = { nama: "", sekolah: "" };
 
@@ -329,10 +378,11 @@
             })
             .then(res => res.json())
             .then(data => {
+                if (data.status !== "success") throw new Error(data.message || "Penyimpanan belum berhasil.");
                 alert("Berhasil! " + data.message);
             })
             .catch(err => {
-                alert("Dokumen RPM siap diunduh dan direkam!");
+                alert("RPM belum tersimpan: " + err.message);
             });
         }
     </script>
