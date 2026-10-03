@@ -23,12 +23,13 @@ th{background:linear-gradient(110deg,#e5eafa,#ece5f7);color:#4f4b78}tbody tr:nth
 <div id="warning" class="notice" hidden></div>
 <section class="panel"><div class="toolbar"><div><h2>Daftar guru dan perangkat ajar</h2><p class="sub" id="updatedAt">Menunggu data…</p></div><button type="button" class="btn btn-main" id="refreshBtn">Perbarui data</button></div><div class="filter"><label>Cari guru atau sekolah<input type="search" id="search" placeholder="Ketik nama guru atau sekolah"></label><label>Asal sekolah<select id="school"><option value="">Semua sekolah</option></select></label><label>Status perangkat<select id="status"><option value="">Semua status</option><option value="both">Sudah TP–ATP dan RPM</option><option value="tp">Baru TP–ATP</option><option value="rpm">Baru RPM</option><option value="none">Belum ada hasil</option></select></label></div><p id="loadStatus" class="note" role="status"></p><div class="table-wrap"><table><thead><tr><th>No.</th><th>Guru / kelas mengajar</th><th>Asal sekolah</th><th>TP–ATP</th><th>RPM</th><th>Status</th><th>Hasil terbaru</th><th>Dokumen</th></tr></thead><tbody id="teacherRows"><tr><td colspan="8" class="empty">Memuat data…</td></tr></tbody></table></div><p class="note" id="rowCount"></p></section>
 <footer class="footer"><span>© 2026 Kombel Guslah 2 Grati</span><span>Pemantauan pengawas · Data TP–ATP dan RPM tersimpan</span></footer></main>
-<div class="overlay" id="loginModal" role="dialog" aria-modal="true" aria-labelledby="loginTitle"><section class="login-card"><div class="login-mark">G2</div><h2 id="loginTitle">Masuk sebagai pengawas</h2><p>Pantau penyusunan perangkat pembelajaran guru Guslah 2 Grati.</p><form id="loginForm"><label for="username">Username</label><input id="username" name="username" required autocomplete="username" autofocus placeholder="Username pengawas"><label for="password">Sandi</label><input id="password" name="password" type="password" required autocomplete="current-password" placeholder="Masukkan sandi"><button class="btn btn-main" id="loginBtn" type="submit">Masuk ke halaman pantau</button><p id="loginMessage" class="message" role="status"></p></form><a class="login-back" href="index.html">← Kembali ke beranda</a></section></div>
+<div class="overlay" id="loginModal" hidden role="dialog" aria-modal="true" aria-labelledby="loginTitle"><section class="login-card"><div class="login-mark">G2</div><h2 id="loginTitle">Masuk sebagai pengawas</h2><p>Pantau penyusunan perangkat pembelajaran guru Guslah 2 Grati.</p><form id="loginForm"><label for="username">Username</label><input id="username" name="username" required autocomplete="username" autofocus placeholder="Username pengawas"><label for="password">Sandi</label><input id="password" name="password" type="password" required autocomplete="current-password" placeholder="Masukkan sandi"><button class="btn btn-main" id="loginBtn" type="submit">Masuk ke halaman pantau</button><p id="loginMessage" class="message" role="status"></p></form><a class="login-back" href="index.html">← Kembali ke beranda</a></section></div>
 <div class="overlay" id="detailModal" hidden role="dialog" aria-modal="true" aria-labelledby="detailName"><section class="dialog"><div class="dialog-header"><div><h2 id="detailName"></h2><p class="sub" id="detailSchool"></p></div><button class="close" id="closeDetail" aria-label="Tutup detail" type="button">×</button></div><div class="doc-columns"><section><h3 id="tpTitle">Hasil TP–ATP</h3><div id="tpDocs"></div></section><section><h3 id="rpmTitle">Hasil RPM</h3><div id="rpmDocs"></div></section></div><p class="note">PDF dibuka di Google Drive. Gunakan akun Google pengawas yang diberi akses ke folder dokumen guru.</p></section></div>
 <script>
 // Tempel URL /exec dari deployment PROYEK Apps Script PANTAU, bukan backend guru.
 const PANTAU_API_URL = 'https://script.google.com/macros/s/AKfycbx0pa_nYobLz05XqXMf9avIJO2XipRMKZ6D847ec9LmMpsPbOdUjmsig-ZPsJmUt3k/exec';
 let token='', dataset=null, busy=false, detailTrigger=null;
+const PANTAU_SESSION_KEY='guslah2_pantau_session';
 const $=id=>document.getElementById(id);
 const statuses=[{id:'both',label:'TP–ATP dan RPM',color:'#119579'},{id:'tp',label:'Baru TP–ATP',color:'#3976df'},{id:'rpm',label:'Baru RPM',color:'#dca13b'},{id:'none',label:'Belum ada hasil',color:'#bac8d1'}];
 function el(tag,text,className){const e=document.createElement(tag);if(text!==undefined)e.textContent=text;if(className)e.className=className;return e;}
@@ -39,10 +40,10 @@ async function api(payload){
 }
 $('loginForm').addEventListener('submit',async event=>{
  event.preventDefault();$('loginBtn').disabled=true;$('loginMessage').textContent='Memverifikasi akun…';
- try{const result=await api({action:'login',username:$('username').value,password:$('password').value});token=result.token;$('password').value='';$('loginModal').hidden=true;$('dashboard').hidden=false;$('loginMessage').textContent='';await loadData();}
+ try{const result=await api({action:'login',username:$('username').value,password:$('password').value});token=result.token;try{sessionStorage.setItem(PANTAU_SESSION_KEY,JSON.stringify({token,expires:Date.now()+21600000}));}catch(_){}$('password').value='';$('loginModal').hidden=true;$('dashboard').hidden=false;$('loginMessage').textContent='';await loadData();}
  catch(error){$('loginMessage').textContent=error.message;}finally{$('loginBtn').disabled=false;}
 });
-function clearSession(){token='';dataset=null;$('dashboard').hidden=true;$('detailModal').hidden=true;$('loginModal').hidden=false;$('teacherRows').replaceChildren();$('tpDocs').replaceChildren();$('rpmDocs').replaceChildren();$('username').focus();}
+function clearSession(){try{sessionStorage.removeItem(PANTAU_SESSION_KEY);}catch(_){}token='';dataset=null;$('dashboard').hidden=true;$('detailModal').hidden=true;$('loginModal').hidden=false;$('teacherRows').replaceChildren();$('tpDocs').replaceChildren();$('rpmDocs').replaceChildren();$('username').focus();}
 $('logoutBtn').addEventListener('click',()=>{const previous=token;clearSession();if(previous)api({action:'logout',token:previous}).catch(()=>{});window.location.replace('index.html');});
 async function loadData(){
  if(busy||!token)return;busy=true;$('refreshBtn').disabled=true;$('loadStatus').textContent='Memuat data terbaru dari spreadsheet…';
@@ -74,5 +75,16 @@ function openDetail(teacher,trigger){detailTrigger=trigger;$('detailName').textC
 function closeDetail(){$('detailModal').hidden=true;detailTrigger?.focus();}
 $('closeDetail').addEventListener('click',closeDetail);$('detailModal').addEventListener('click',event=>{if(event.target===$('detailModal'))closeDetail();});
 document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!$('detailModal').hidden)closeDetail();if(event.key==='Tab'){const modal=!$('detailModal').hidden?$('detailModal'):!$('loginModal').hidden?$('loginModal'):null;if(!modal)return;const focus=[...modal.querySelectorAll('a[href],button,input,select,summary')].filter(e=>!e.disabled&&!e.hidden);const first=focus[0],last=focus[focus.length-1];if(event.shiftKey&&document.activeElement===first){last.focus();event.preventDefault();}else if(!event.shiftKey&&document.activeElement===last){first.focus();event.preventDefault();}}});
+// Pulihkan sesi pada tab yang sama; sandi tidak disimpan.
+function restorePantauSession(){
+ try{
+  const raw=sessionStorage.getItem(PANTAU_SESSION_KEY),session=raw?JSON.parse(raw):null;
+  if(session&&/^[a-f0-9-]{72}$/i.test(session.token)&&session.expires>Date.now()){
+   token=session.token;$('loginModal').hidden=true;$('dashboard').hidden=false;loadData();return;
+  }
+ }catch(_){}
+ clearSession();
+}
+restorePantauSession();
 $('refreshBtn').addEventListener('click',loadData);['search','school','status'].forEach(id=>$(id).addEventListener(id==='search'?'input':'change',()=>{if(dataset)render();}));
 </script></body></html>
