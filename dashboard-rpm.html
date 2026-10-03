@@ -81,8 +81,8 @@ header{z-index:30!important;background:rgba(6,79,69,.96)!important;box-shadow:0 
         <section id="panel-home" class="panel" role="tabpanel" aria-labelledby="tab-home"><h2 class="text-2xl font-bold mb-2">Selamat datang, Bapak/Ibu Guru</h2><p class="text-sm text-slate-500 mb-6">Pilih perangkat pembelajaran yang ingin Anda siapkan.</p><div class="menu-grid"><button type="button" class="menu-card" onclick="showMenu('cp')"><span class="card-icon blue" aria-hidden="true">CP</span><h3 class="text-xl font-bold">CP-ATP</h3><p class="text-sm text-slate-500 leading-relaxed mt-3">Buat TP dan ATP berdasarkan CP yang terkunci serta kondisi lingkungan murid.</p><span class="block mt-6 text-sm font-semibold text-blue-700">Buka CP-ATP →</span></button><button type="button" class="menu-card" onclick="showMenu('rpm')"><span class="card-icon" aria-hidden="true">RPM</span><h3 class="text-xl font-bold">Rencana Pembelajaran Mendalam</h3><p class="text-sm text-slate-500 leading-relaxed mt-3">Susun rencana pembelajaran dengan memperhatikan kesiapan, minat, dan kebutuhan belajar murid.</p><span class="block mt-6 text-sm font-semibold text-emerald-700">Buka pembuatan RPM →</span></button></div><div class="mt-7 bg-white/70 border border-white rounded-2xl p-6"><h3 class="font-semibold">Alur perencanaan pembelajaran</h3><p class="text-sm text-slate-500 mt-2 leading-relaxed">Telaah CP, rumuskan tujuan pembelajaran, susun ATP, lalu rancang kegiatan dan asesmen dalam RPM.</p></div></section>
         <section id="panel-cp" class="panel" hidden role="tabpanel" aria-labelledby="tab-cp">
          <div class="bg-white rounded-2xl p-6 border border-slate-200"><p class="text-xs uppercase tracking-widest text-blue-700 font-semibold">Perencanaan pembelajaran</p><h2 class="text-2xl font-bold mt-2">Generate TP–ATP</h2><p class="text-sm text-slate-500 mt-2">Susun tujuan dan alur tujuan pembelajaran berdasarkan CP sumber dan lingkungan murid.</p>
-          <details open class="mt-6 border border-emerald-100 rounded-2xl p-5 bg-emerald-50/50"><summary class="font-bold text-emerald-900 cursor-pointer">Buat TP dan ATP sesuai lingkungan murid</summary><p class="text-sm text-slate-600 mt-3 mb-4">Pilih referensi dari CP_ATP yang diunggah. Teks CP dan sumbernya terkunci; guru menyusun TP dan ATP melalui materi serta kondisi nyata lingkungan murid.</p><form id="formTPATP" onsubmit="generateTPATP(event)"><div class="grid md:grid-cols-3 gap-4"><label class="field"><span>Mata pelajaran</span><select id="genMapel" disabled aria-disabled="true"><option>Matematika</option><option>Bahasa Indonesia</option><option>IPAS</option><option>Pendidikan Pancasila</option><option>Bahasa Inggris</option><option>PJOK</option><option>Seni Musik</option><option>Seni Rupa</option></select></label><label class="field"><span>Fase</span><select id="genFase" disabled aria-disabled="true"><option value="A">Fase A</option><option value="B" selected>Fase B</option><option value="C">Fase C</option></select></label><label class="field"><span>Kelas</span><select id="genKelas" required><option value="1">Kelas 1</option><option value="2">Kelas 2</option><option value="3">Kelas 3</option><option value="4" selected>Kelas 4</option><option value="5">Kelas 5</option><option value="6">Kelas 6</option></select></label></div><label class="field" for="genReference"><span>Pilih Referensi CP dari CP_ATP</span><select id="genReference" required onchange="selectCPById(this.value)"><option value="">Pilih CP dari sumber yang diunggah</option></select></label><label class="field"><span>CP yang menjadi dasar (terkunci)</span><textarea id="genCP" rows="6" readonly aria-readonly="true" placeholder="Terisi otomatis setelah memilih referensi CP_ATP."></textarea></label><label class="field"><span>Materi atau fokus pembelajaran</span><input id="genMateri" required maxlength="500" placeholder="Contoh: membaca dan menyajikan data dalam piktogram"></label><label class="field"><span>Kondisi lingkungan lembaga dan murid</span><textarea id="genLingkungan" rows="4" required maxlength="5000" placeholder="Jelaskan mata pencaharian warga, objek sekitar, budaya lokal, fasilitas, akses digital, serta kebutuhan murid. Contoh: sekolah dekat pasar desa; orang tua bekerja sebagai pedagang; tersedia proyektor dan Chromebook."></textarea></label><div class="grid md:grid-cols-2 gap-4"><label class="field"><span>Alokasi setiap tahap (JP)</span><input id="genJP" type="number" min="1" max="12" step="1" value="2" required></label><label class="field"><span>Sumber CP</span><input id="genSumber" readonly aria-readonly="true" placeholder="Terisi otomatis dari sumber CP_ATP"></label></div><button id="btnGenerateTPATP" class="bg-emerald-700 text-white font-semibold rounded-xl px-5 py-3" type="submit">Generate TP–ATP</button><p id="tpGenerateStatus" class="text-xs text-slate-600 mt-3" aria-live="polite"></p></form></details>
-          <div id="tpATPResult" hidden class="mt-5 border border-emerald-200 rounded-2xl p-5 bg-white"><h3 class="font-bold text-xl">Draf TP dan ATP kontekstual</h3><p id="tpATPContext" class="text-sm text-slate-600 mt-2 whitespace-pre-wrap"></p><p class="text-xs text-slate-500 mt-3">Sunting tujuan, kegiatan, bukti asesmen, kriteria, dan alokasi. Urutan ditampilkan dari pemahaman menuju penerapan dan refleksi.</p><div id="tpATPRows"></div><button type="button" onclick="sendTPATPToRPM()" class="mt-5 bg-emerald-700 text-white rounded-xl px-5 py-3 font-semibold">Lanjutkan membuat RPM →</button></div>
+          <details open class="mt-6 border border-emerald-100 rounded-2xl p-5 bg-emerald-50/50"><summary class="font-bold text-emerald-900 cursor-pointer">Buat TP dan ATP sesuai lingkungan murid</summary><p class="text-sm text-slate-600 mt-3 mb-4">Pilih referensi dari CP_ATP yang diunggah. Teks CP dan sumbernya terkunci; guru menyusun TP dan ATP melalui materi serta kondisi nyata lingkungan murid.</p><form id="formTPATP" onsubmit="generateTPATP(event)"><div class="grid md:grid-cols-3 gap-4"><label class="field"><span>Mata pelajaran</span><select id="genMapel" required onchange="filterCPReferences()"><option>Matematika</option><option>Bahasa Indonesia</option><option>IPAS</option><option>Pendidikan Pancasila</option><option>Bahasa Inggris</option><option>PJOK</option><option>Seni Musik</option><option>Seni Rupa</option></select></label><label class="field"><span>Fase</span><select id="genFase" required onchange="filterCPReferences()"><option value="A">Fase A</option><option value="B" selected>Fase B</option><option value="C">Fase C</option></select></label><label class="field"><span>Kelas</span><select id="genKelas" required><option value="1">Kelas 1</option><option value="2">Kelas 2</option><option value="3">Kelas 3</option><option value="4" selected>Kelas 4</option><option value="5">Kelas 5</option><option value="6">Kelas 6</option></select></label></div><label class="field" for="genReference"><span>Pilih Referensi CP dari CP_ATP</span><select id="genReference" required onchange="selectCPById(this.value)"><option value="">Pilih CP dari sumber yang diunggah</option></select></label><label class="field"><span>CP yang menjadi dasar (terkunci)</span><textarea id="genCP" rows="6" readonly aria-readonly="true" placeholder="Terisi otomatis setelah memilih referensi CP_ATP."></textarea></label><label class="field"><span>Materi atau fokus pembelajaran</span><input id="genMateri" required maxlength="500" placeholder="Contoh: membaca dan menyajikan data dalam piktogram"></label><label class="field"><span>Kondisi lingkungan lembaga dan murid</span><textarea id="genLingkungan" rows="4" required maxlength="5000" placeholder="Jelaskan mata pencaharian warga, objek sekitar, budaya lokal, fasilitas, akses digital, serta kebutuhan murid. Contoh: sekolah dekat pasar desa; orang tua bekerja sebagai pedagang; tersedia proyektor dan Chromebook."></textarea></label><div class="grid md:grid-cols-2 gap-4"><label class="field"><span>Alokasi setiap tahap (JP)</span><input id="genJP" type="number" min="1" max="12" step="1" value="2" required></label><label class="field"><span>Sumber CP</span><input id="genSumber" readonly aria-readonly="true" placeholder="Terisi otomatis dari sumber CP_ATP"></label></div><button id="btnGenerateTPATP" class="bg-emerald-700 text-white font-semibold rounded-xl px-5 py-3" type="submit">Generate TP–ATP</button><p id="tpGenerateStatus" class="text-xs text-slate-600 mt-3" aria-live="polite"></p></form></details>
+          <div id="tpATPResult" hidden class="mt-5 border border-emerald-200 rounded-2xl p-5 bg-white"><h3 class="font-bold text-xl">Draf TP dan ATP kontekstual</h3><p id="tpATPContext" class="text-sm text-slate-600 mt-2 whitespace-pre-wrap"></p><p class="text-xs text-slate-500 mt-3">Sunting tujuan, kegiatan, bukti asesmen, kriteria, dan alokasi. Urutan ditampilkan dari pemahaman menuju penerapan dan refleksi.</p><button type="button" id="btnSaveTPATP" onclick="saveTPATPServer()" class="bg-emerald-700 text-white rounded-xl px-4 py-2 mt-4">Simpan hasil / Buat PDF</button><p class="text-xs text-slate-500 mt-2">Klik setelah menyunting draf untuk menyimpan versi baru beserta PDF.</p><div id="tpATPRows"></div><button type="button" onclick="sendTPATPToRPM()" class="mt-5 bg-emerald-700 text-white rounded-xl px-5 py-3 font-semibold">Lanjutkan membuat RPM →</button></div>
          </div>
         </section>
         <section id="panel-rpm" class="panel" hidden role="tabpanel" aria-labelledby="tab-rpm"><div id="rpmIntro" class="bg-white border rounded-2xl p-6 mb-6"><h2 class="text-2xl font-bold">Rencana Pembelajaran Mendalam</h2><p class="text-sm text-slate-500 mt-2">Kolom dan urutan hasil mengikuti template yang diberikan. Lengkapi setiap komponen, lalu buat pratinjau.</p><p id="sourceRPM" class="text-xs text-emerald-800 mt-3">CP mengikuti referensi CP_ATP yang dipilih dan tidak dapat disunting.</p></div><form id="formRPM" onsubmit="generateRPM(event)" class="bg-white border rounded-2xl p-6 md:p-8 space-y-6">
@@ -109,16 +109,35 @@ header{z-index:30!important;background:rgba(6,79,69,.96)!important;box-shadow:0 
         let selectedReference = null;
         let rpmReferenceId = null;
         function fillCPFilters() {
-            const refSelect = document.getElementById('genReference');
-            const refId = refSelect.value;
-            refSelect.replaceChildren();
-            const placeholder = document.createElement('option'); placeholder.value = ''; placeholder.textContent = 'Pilih CP dari sumber yang diunggah'; refSelect.append(placeholder);
-            cpData.forEach(item => {
-                const option = document.createElement('option'); option.value = item.id;
-                option.textContent = item.mapel + ' · Fase ' + item.fase + ' · ' + item.jenis;
-                refSelect.append(option);
+            const select = document.getElementById('genMapel');
+            const previous = select.value;
+            select.replaceChildren();
+            [...new Set(cpData.map(item => item.mapel))].sort().forEach(mapel => {
+                const option = document.createElement('option'); option.value = mapel; option.textContent = mapel; select.append(option);
             });
-            refSelect.value = cpData.some(item => item.id === refId) ? refId : '';
+            if (cpData.some(item => item.mapel === previous)) select.value = previous;
+            filterCPReferences();
+        }
+        function filterCPReferences() {
+            const mapel = document.getElementById('genMapel').value;
+            const fase = document.getElementById('genFase').value;
+            const select = document.getElementById('genReference');
+            const previous = select.value;
+            const matches = cpData.filter(item => item.mapel === mapel && item.fase === fase);
+            select.replaceChildren();
+            const placeholder = document.createElement('option'); placeholder.value = '';
+            placeholder.textContent = matches.length ? 'Pilih CP dari sumber yang diunggah' : 'CP untuk mata pelajaran dan fase ini belum tersedia'; select.append(placeholder);
+            matches.forEach(item => {
+                const option = document.createElement('option'); option.value = item.id; option.textContent = item.mapel + ' · Fase ' + item.fase + ' · ' + item.jenis; select.append(option);
+            });
+            const chosen = matches.find(item => item.id === previous) || (matches.length === 1 ? matches[0] : null);
+            select.value = chosen ? chosen.id : '';
+            selectedReference = chosen;
+            document.getElementById('genCP').value = chosen ? chosen.cp : '';
+            document.getElementById('genSumber').value = chosen ? chosen.sumber + ' · halaman ' + chosen.halaman + ' · ' + chosen.jenis : '';
+            const kelas = document.getElementById('genKelas');
+            if ((Number(kelas.value) <= 2 ? 'A' : Number(kelas.value) <= 4 ? 'B' : 'C') !== fase) kelas.value = ({A:'1',B:'3',C:'5'})[fase];
+            document.getElementById('tpGenerateStatus').textContent = matches.length ? 'Pilih CP, lalu lengkapi materi dan lingkungan murid.' : 'PDF unggahan belum memuat CP untuk pilihan ini. Pilih fase lain atau tambahkan referensi CP yang valid pada sheet CP_ATP.';
         }
         function selectCPById(id) {
             const item = cpData.find(row => row.id === id);
@@ -131,6 +150,9 @@ header{z-index:30!important;background:rgba(6,79,69,.96)!important;box-shadow:0 
         }
         function selectCPForAuthoring(item) {
             selectedReference = item;
+            document.getElementById('genMapel').value = item.mapel;
+            document.getElementById('genFase').value = item.fase;
+            filterCPReferences();
             document.getElementById('genReference').value = item.id;
             document.getElementById('genMapel').value = item.mapel;
             document.getElementById('genFase').value = item.fase;
@@ -190,6 +212,7 @@ header{z-index:30!important;background:rgba(6,79,69,.96)!important;box-shadow:0 
             try { sessionStorage.removeItem(sessionKey); } catch (_) {}
             try { sessionStorage.removeItem(draftKey()); } catch (_) {}
             currentTPATP = null;
+            pendingTPATPSave = null;
             document.getElementById('dimensionDescriptions').replaceChildren();
             document.getElementById('formTPATP').reset();
             document.getElementById('tpATPResult').hidden = true;
@@ -242,7 +265,7 @@ header{z-index:30!important;background:rgba(6,79,69,.96)!important;box-shadow:0 
             .then(res => res.json())
             .then(data => {
                 if (data.status === "success") {
-                    const user = { nama: data.nama, sekolah: data.sekolah };
+                    const user = { nama: data.nama, sekolah: data.sekolah, token: data.token };
                     try { sessionStorage.setItem(sessionKey, JSON.stringify(user)); } catch (_) {}
                     document.getElementById('loginHp').value = '';
                     applySession(user);
@@ -329,6 +352,9 @@ function susunTPATP(input) {
                     return;
                 }
                 selectedReference = ref;
+                document.getElementById('genMapel').value = ref.mapel;
+                document.getElementById('genFase').value = ref.fase;
+                filterCPReferences();
                 document.getElementById('genReference').value = ref.id;
                 currentTPATP = draft;
                 [['genMapel','mapel'],['genFase','fase'],['genKelas','kelas'],['genCP','cp'],['genMateri','materi'],['genLingkungan','lingkungan'],['genJP','jp'],['genSumber','sumber']].forEach(([id,key]) => document.getElementById(id).value = draft.input[key] || '');
@@ -336,7 +362,7 @@ function susunTPATP(input) {
                 document.getElementById('tpGenerateStatus').textContent = 'Draf TP–ATP pada sesi ini dipulihkan. Anda dapat melanjutkan penyuntingan.';
             } catch (_) {}
         }
-        function generateTPATP(event) {
+        async function generateTPATP(event) {
             event.preventDefault();
             const status = document.getElementById('tpGenerateStatus');
             if (!document.getElementById('formTPATP').reportValidity()) return;
@@ -348,7 +374,39 @@ function susunTPATP(input) {
                 renderTPATPDraft(); saveTPATPDraft();
                 status.textContent = 'Draf dibuat berdasarkan aturan penyusunan dan CP yang Anda masukkan. Sunting kegiatan agar konkret sesuai lingkungan lembaga.';
                 document.getElementById('tpATPResult').scrollIntoView({behavior:'smooth',block:'start'});
+                await saveTPATPServer();
             } catch (error) { status.textContent = error.message; }
+        }
+        let savingTPATP = false;
+        let pendingTPATPSave = null;
+        async function saveTPATPServer() {
+            if (savingTPATP || !currentTPATP) return;
+            const status = document.getElementById('tpGenerateStatus');
+            if (!loggedInUser.token) {
+                status.textContent = 'Draf tersedia. Untuk mengaktifkan penyimpanan pada versi baru, klik Keluar dan masuk kembali satu kali, lalu klik Simpan hasil / Buat PDF.'; return;
+            }
+            const fingerprint = JSON.stringify({input:currentTPATP.input,rows:currentTPATP.rows});
+            if (!pendingTPATPSave || pendingTPATPSave.fingerprint !== fingerprint) {
+                pendingTPATPSave = {fingerprint, requestId:crypto.randomUUID()};
+            }
+            savingTPATP = true;
+            document.getElementById('btnGenerateTPATP').disabled = true;
+            document.getElementById('btnSaveTPATP').disabled = true;
+            status.textContent = 'Menyimpan rekap dan membuat PDF di folder Drive guru…';
+            try {
+                const response = await fetch(scriptURL, {method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'}, body:JSON.stringify({action:'save_cp_atp',token:loggedInUser.token,requestId:pendingTPATPSave.requestId,input:currentTPATP.input,rows:currentTPATP.rows})});
+                const result = await response.json();
+                if (result.status !== 'success') throw new Error(result.message || 'Penyimpanan belum berhasil.');
+                status.textContent = 'Berhasil tersimpan di Rekap CP-ATP. PDF dibuat di folder Drive guru. ';
+                const link = document.createElement('a'); link.href = result.pdfUrl; link.target = '_blank'; link.rel = 'noopener'; link.textContent = 'Buka PDF'; link.className = 'font-semibold underline'; status.append(link);
+                currentTPATP.saved = {id:result.id,pdfUrl:result.pdfUrl}; saveTPATPDraft();
+            } catch (error) {
+                status.textContent = 'Draf tetap tersedia. Penyimpanan belum terkonfirmasi: ' + error.message + ' Klik Simpan hasil / Buat PDF untuk mencoba kembali.';
+            } finally {
+                savingTPATP = false;
+                document.getElementById('btnGenerateTPATP').disabled = false;
+                document.getElementById('btnSaveTPATP').disabled = false;
+            }
         }
         function renderTPATPDraft() {
             document.getElementById('tpATPResult').hidden = false;
