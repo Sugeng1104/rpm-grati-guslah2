@@ -12,7 +12,7 @@
 <div class="overlay" id="detailModal" hidden role="dialog" aria-modal="true" aria-labelledby="detailName"><section class="dialog"><div class="dialog-header"><div><h2 id="detailName"></h2><p class="sub" id="detailSchool"></p></div><button class="close" id="closeDetail" aria-label="Tutup detail" type="button">×</button></div><div class="doc-columns"><section><h3 id="tpTitle">Hasil TP–ATP</h3><div id="tpDocs"></div></section><section><h3 id="rpmTitle">Hasil RPM</h3><div id="rpmDocs"></div></section></div><p class="note">PDF dibuka di Google Drive. Gunakan akun Google pengawas yang diberi akses ke folder dokumen guru.</p></section></div>
 <script>
 // Tempel URL /exec dari deployment PROYEK Apps Script PANTAU, bukan backend guru.
-const PANTAU_API_URL = 'TEMPEL_URL_WEB_APP_PANTAU_DI_SINI';
+const PANTAU_API_URL = 'https://script.google.com/macros/s/AKfycbx0pa_nYobLz05XqXMf9avIJO2XipRMKZ6D847ec9LmMpsPbOdUjmsig-ZPsJmUt3k/exec';
 let token='', dataset=null, busy=false, detailTrigger=null;
 const $=id=>document.getElementById(id);
 const statuses=[{id:'both',label:'TP–ATP dan RPM',color:'#119579'},{id:'tp',label:'Baru TP–ATP',color:'#3976df'},{id:'rpm',label:'Baru RPM',color:'#dca13b'},{id:'none',label:'Belum ada hasil',color:'#bac8d1'}];
