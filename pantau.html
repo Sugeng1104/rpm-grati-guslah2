@@ -148,5 +148,6 @@ function restorePantauSession(){
  clearSession();
 }
 restorePantauSession();
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&token)loadData();});
 $('refreshBtn').addEventListener('click',loadData);['search','school','status'].forEach(id=>$(id).addEventListener(id==='search'?'input':'change',()=>{if(dataset)render();}));
 </script></body></html>
