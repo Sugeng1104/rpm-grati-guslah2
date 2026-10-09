@@ -36,7 +36,7 @@ async function savePDF(){
   const response=await fetch(API_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'save_lkpd_pdf',token:user.token,requestId,context,lkpd:snapshot,includeKeys,images})});
   const result=await response.json();if(result.status!=='success')throw new Error(result.message||'Penyimpanan PDF belum terkonfirmasi.');
   if(!/^https:\/\/drive\.google\.com\//.test(result.pdfUrl||''))throw new Error('Tautan PDF belum valid.');
-  $('pdfLink').href=result.pdfUrl;$('pdfLink').hidden=false;$('pdfStatus').textContent='PDF berhasil tersimpan di folder Drive '+user.nama+'.';
+  $('pdfLink').href=result.pdfUrl;$('pdfLink').hidden=false;$('pdfStatus').textContent='PDF berhasil tersimpan di folder Drive '+user.nama+' dan datanya tercatat pada sheet Rekap LKPD.';
  }catch(error){$('pdfStatus').textContent=error.message+' Draf tetap tersedia. Klik Simpan PDF ke Drive Saya untuk mencoba kembali.';}finally{busy=false;$('print').disabled=false;$('generate').disabled=false;}
 }
 $('generate').addEventListener('click',generate);$('retry').addEventListener('click',init);$('preview').addEventListener('click',update);$('print').addEventListener('click',savePDF);$('browserPrint').addEventListener('click',()=>{if(update())window.print();});$('download').addEventListener('click',download);$('includeKeys').addEventListener('change',()=>{if(lkpd)update();});$('editor').addEventListener('input',()=>{try{collect();saveDraft();}catch(_){}});init();
