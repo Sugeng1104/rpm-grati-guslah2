@@ -501,7 +501,7 @@ function susunTPATP(input) {
         function openLampiran() {
             if (!loggedInUser || !loggedInUser.token) { alert('Silakan masuk terlebih dahulu.'); return; }
             try {
-                sessionStorage.setItem('rpm_lampiran_context',JSON.stringify({owner:loggedInUser.nama+'|'+loggedInUser.sekolah,mapel:document.getElementById('mapel').value,kelas:document.getElementById('faseKelas').value,topik:document.getElementById('topik').value,tp:document.getElementById('tpRPM').value}));
+                sessionStorage.setItem('rpm_lampiran_context',JSON.stringify({owner:loggedInUser.nama+'|'+loggedInUser.sekolah,mapel:document.getElementById('mapel').value,kelas:document.getElementById('faseKelas').value,topik:document.getElementById('topik').value,tp:document.getElementById('tpRPM').value,materi:document.getElementById('materiPelajaran').value,kegiatan:[...document.querySelectorAll('.meeting-activity')].map(el=>el.value).join('\n\n')}));
                 window.location.assign('lampiran.html');
             } catch (_) { alert('Penyimpanan sesi tidak tersedia. Izinkan penyimpanan browser lalu coba kembali.'); }
         }
